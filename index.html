@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="main-container">
-        <form class="form-data" action="upload.php" method="post" enctype="multipart/form-data">
+        <form id="incident-form" class="form-data" action="upload.php" method="post" enctype="multipart/form-data">
             <label for="officer-name">Name of Officer</label><br>
-            <input type="text" id="officer-name" name="name-of-officer" placeholder="Enter the Officer's name" ><br>
+            <input type="text" id="officer-name" name="name-of-officer" placeholder="Enter the Officer's name" required><br>
  
             <label for="officer-id">Officer ID</label><br>
-            <input type="text" name="id-of-officer" id="officer-id" placeholder="Enter Officer ID"><br>
+            <input type="text" name="id-of-officer" id="officer-id" placeholder="Enter Officer ID" required><br>
 
             <label for="date-of-report">Date of Report</label><br>
             <input
@@ -22,13 +22,13 @@
                 name="date-of-report"
                 value="2018-07-22"
                 min="1997-01-01"
-                max="2050-12-31" ><br>
+                max="2050-12-31" required><br>
 
-                <label for="appt">Time of Report</label><br>
-                <input type="time" id="appt" name="appt"><br>
+                <label for="appt">Time of Incident</label><br>
+                <input type="time" id="appt" name="appt" required><br>
 
                 <label for="reporters-comment">Report:</label><br>
-                <textarea name="comment" id="reporters-comment"></textarea><br><br>
+                <textarea name="comment" id="reporters-comment" required></textarea><br><br>
 
                 <label for="imageUpload">Choose an image to upload:</label><br>
                 <input type="file" id="imageUpload" name="image" accept="image/*"><br>
@@ -36,5 +36,6 @@
                 <button type="submit">Submit</button>
         </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
