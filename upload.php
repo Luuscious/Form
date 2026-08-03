@@ -56,29 +56,34 @@ if (move_uploaded_file($source, $destination)) {
 
     echo "Image uploaded successfully!";
     $sql = "INSERT INTO incidents
-        (
-            officer_name,
-            officer_id,
-            incident_date,
-            incident_time,
-            report,
-            image
-        )
-        VALUES
-        (
-            '$officerName',
-            '$officerID',
-            '$incidentDate',
-            '$incidentTime',
-            '$report',
-            '$uniqueName'
-        )";
+(
+    officer_name,
+    officer_id,
+    incident_date,
+    incident_time,
+    report,
+    image
+)
+VALUES (?, ?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(
+    "ssssss",
+    $officerName,
+    $officerID,
+    $incidentDate,
+    $incidentTime,
+    $report,
+    $uniqueName
+);
          // Execute the query
-    if ($conn->query($sql)) {
+    if ($stmt->execute()) {
         echo "<br>Incident saved successfully!";
     } else {
         echo "<br>Database Error: " . $conn->error;
     }
+
+    $stmt->close();
 } else {
 
     echo "Image upload failed.";
